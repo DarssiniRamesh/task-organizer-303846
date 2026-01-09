@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Ocean Professional theme -->
+    <style name="Theme.TaskOrganizer.Ocean" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Core palette -->
+        <item name="colorPrimary">@color/ocean_primary</item>
+        <item name="colorPrimaryVariant">@color/ocean_primary</item>
+        <item name="colorSecondary">@color/ocean_secondary</item>
+        <item name="colorSecondaryVariant">@color/ocean_secondary</item>
+        <item name="colorError">@color/ocean_error</item>
+
+        <item name="android:colorBackground">@color/ocean_background</item>
+        <item name="colorSurface">@color/ocean_surface</item>
+        <item name="colorOnSurface">@color/ocean_text</item>
+
+        <!-- Default typography colors -->
+        <item name="android:textColorPrimary">@color/ocean_text</item>
+        <item name="android:textColorSecondary">@color/ocean_text_secondary</item>
+
+        <!-- Shape: subtle rounding -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.TaskOrganizer.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.TaskOrganizer.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.TaskOrganizer.Large</item>
+    </style>
+
+    <style name="ShapeAppearance.TaskOrganizer.Small" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+
+    <style name="ShapeAppearance.TaskOrganizer.Medium" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">14dp</item>
+    </style>
+
+    <style name="ShapeAppearance.TaskOrganizer.Large" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">18dp</item>
+    </style>
+
+</resources>
