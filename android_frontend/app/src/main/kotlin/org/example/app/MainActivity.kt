@@ -2,7 +2,7 @@ package org.example.app
 
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), TasksAdapter.TaskItemListener {
     private lateinit var adapter: TasksAdapter
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var emptyState: TextView
+    private lateinit var emptyStateContainer: View
     private lateinit var fab: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,9 +35,25 @@ class MainActivity : AppCompatActivity(), TasksAdapter.TaskItemListener {
 
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         toolbar.title = getString(R.string.tasks_title)
+        setSupportActionBar(toolbar)
+
+        toolbar.inflateMenu(R.menu.menu_main)
+        toolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.action_clear_completed -> {
+                    viewModel.clearCompletedTasks()
+                    true
+                }
+                R.id.action_about -> {
+                    showAboutDialog()
+                    true
+                }
+                else -> false
+            }
+        }
 
         recyclerView = findViewById(R.id.recyclerTasks)
-        emptyState = findViewById(R.id.textEmpty)
+        emptyStateContainer = findViewById(R.id.emptyStateContainer)
         fab = findViewById(R.id.fabAdd)
 
         // Create ViewModel with app-level dependencies (Room DB + repository).
@@ -65,7 +81,7 @@ class MainActivity : AppCompatActivity(), TasksAdapter.TaskItemListener {
         // Observe tasks list.
         viewModel.tasks.observe(this) { tasks ->
             adapter.submitList(tasks)
-            emptyState.visibility = if (tasks.isEmpty()) View.VISIBLE else View.GONE
+            emptyStateContainer.visibility = if (tasks.isEmpty()) View.VISIBLE else View.GONE
             recyclerView.visibility = if (tasks.isEmpty()) View.GONE else View.VISIBLE
         }
 
@@ -73,6 +89,15 @@ class MainActivity : AppCompatActivity(), TasksAdapter.TaskItemListener {
             TaskEditDialogFragment.newAddInstance()
                 .show(supportFragmentManager, TaskEditDialogFragment.TAG)
         }
+    }
+
+    private fun showAboutDialog() {
+        val versionName = packageManager.getPackageInfo(packageName, 0).versionName
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.about_title))
+            .setMessage(getString(R.string.about_message, versionName))
+            .setPositiveButton(android.R.string.ok, null)
+            .show()
     }
 
     override fun onToggleCompleted(task: TaskEntity, isCompleted: Boolean) {

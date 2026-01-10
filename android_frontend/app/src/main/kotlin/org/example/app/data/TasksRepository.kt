@@ -22,4 +22,6 @@ class TasksRepository(
     suspend fun count(): Int = dao.count()
 
     suspend fun insertAll(tasks: List<TaskEntity>) = dao.insertAll(tasks)
+
+    suspend fun deleteCompleted() = dao.deleteCompleted()
 }

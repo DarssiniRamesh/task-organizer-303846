@@ -93,6 +93,16 @@ class TasksViewModel(
         }
     }
 
+    // PUBLIC_INTERFACE
+    fun clearCompletedTasks() {
+        /**
+         * Deletes all completed tasks.
+         */
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteCompleted()
+        }
+    }
+
     /**
      * Used for Snackbar "Undo" after swipe/delete.
      */

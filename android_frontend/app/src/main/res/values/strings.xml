@@ -2,7 +2,15 @@
     <string name="app_name">Task Organizer</string>
 
     <string name="tasks_title">Tasks</string>
+
+    <string name="empty_state_icon_cd">Empty tasks illustration</string>
+    <string name="empty_state_title">All caught up</string>
     <string name="empty_state">No tasks yet. Tap + to add your first task.</string>
+
+    <string name="clear_completed">Clear completed</string>
+    <string name="about">About</string>
+    <string name="about_title">About</string>
+    <string name="about_message">%1$s\n\nA simple to-do list with Ocean Professional styling.</string>
 
     <string name="add_task">Add task</string>
     <string name="edit_task">Edit task</string>
