@@ -27,7 +27,10 @@ defaults {
 
         testing {
             dependencies {
+                // JUnit Jupiter only (no Vintage engine). Vintage is only needed for JUnit4 tests.
                 implementation("org.junit.jupiter:junit-jupiter:5.10.2")
+
+                // Launcher is for IDE/build tool integration; keep it strictly in testing runtime.
                 runtimeOnly("org.junit.platform:junit-platform-launcher")
             }
         }
@@ -40,6 +43,7 @@ defaults {
 
         testing {
             dependencies {
+                // JUnit Jupiter only (no Vintage engine).
                 implementation("org.junit.jupiter:junit-jupiter:5.10.2")
                 runtimeOnly("org.junit.platform:junit-platform-launcher")
             }

@@ -1,6 +1,29 @@
 androidApplication {
     namespace = "org.example.app"
 
+    /*
+     * Packaging configuration to avoid mergeDebugJavaResource failures due to duplicate
+     * META-INF license/notice files coming from transitive dependencies (commonly test engines).
+     *
+     * Note: This is kept intentionally narrow and safe: only excludes common license/notice
+     * artifacts that do not affect runtime behavior.
+     */
+    packagingOptions {
+        resources {
+            excludes += setOf(
+                "META-INF/LICENSE",
+                "META-INF/LICENSE.txt",
+                "META-INF/LICENSE.md",
+                "META-INF/NOTICE",
+                "META-INF/NOTICE.txt",
+                "META-INF/NOTICE.md",
+                "META-INF/DEPENDENCIES",
+                "META-INF/AL2.0",
+                "META-INF/LGPL2.1"
+            )
+        }
+    }
+
     dependencies {
         implementation("org.apache.commons:commons-text:1.11.0")
         implementation(project(":utilities"))
